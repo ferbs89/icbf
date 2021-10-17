@@ -1,35 +1,36 @@
-import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../styles/Home.module.css';
-
-import { useFetch } from '/hooks/useFetch';
+import { useFetch } from '../hooks/useFetch';
+import Layout from '../components/layout';
 
 export default function Home() {
 	const { data, error } = useFetch('/api/cursos');
 
-	if (error) return <p>Error</p>
-	if (!data) return <p>Loading</p>
+	if (error) return <p>Ocorreu um erro.</p>
+	if (!data) return <p>Carregando...</p>
 
 	return (
-		<div className={styles.container}>
-			<Head>
-				<title>iC BF</title>
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
+		<Layout>
+			<table>
+				<thead>
+					<tr>
+						<th>Cursos</th>
+					</tr>
+				</thead>
 
-			<main className={styles.main}>
-				<h2>Cursos</h2>
-
-				<div className={styles.grid}>
+				<tbody>
 					{data.map(curso => {
 						return (
-							<Link key={curso.id} href={`/curso/${curso.id}`}>
-								<a className={styles.card}>{curso.nome}</a>
-							</Link>
+							<tr key={curso.id}>
+								<td>
+									<Link href={`/curso/${curso.id}`}>
+										<a>{curso.nome}</a>
+									</Link>
+								</td>
+							</tr>
 						)
 					})}
-				</div>
-			</main>
-		</div>
+				</tbody>
+			</table>
+		</Layout>
   	)
 }
