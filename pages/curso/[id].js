@@ -4,7 +4,9 @@ import { useFetch } from '../../hooks/useFetch';
 import { supabase } from '../../utils/supabaseClient';
 import { formatDateDMY } from '../../utils/functions';
 
-import Layout from '../../components/layout';
+import Layout from '../../components/Layout';
+import Loading from '../../components/Loading';
+import Error from '../../components/Error';
 import ModuloNovo from '../../components/ModuloNovo';
 
 export function getServerSideProps(context) {
@@ -18,8 +20,8 @@ export function getServerSideProps(context) {
 export default function Curso({ id }) {
 	const { data, error } = useFetch(`/api/curso/${id}`);
 
-	if (error) return <p>Ocorreu um erro.</p>
-	if (!data) return <p>Carregando...</p>
+	if (error) return <Error />
+	if (!data) return <Loading />
 
 	async function handleDelete(modulo_id) {
 		const { data, error } = await supabase

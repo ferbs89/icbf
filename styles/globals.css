@@ -55,8 +55,12 @@ button {
 	margin: 1rem;
 }
 
-h1, h2, p {
+h1, h2 {
 	margin-bottom: 1rem;
+}
+
+p {
+	margin: 1rem 0;
 }
 
 a {

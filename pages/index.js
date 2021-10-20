@@ -1,12 +1,16 @@
 import Link from 'next/link';
 import { useFetch } from '../hooks/useFetch';
-import Layout from '../components/layout';
+
+import Layout from '../components/Layout';
+import Layout from '../components/Layout';
+import Loading from '../components/Loading';
+import Error from '../components/Error';
 
 export default function Home() {
 	const { data, error } = useFetch('/api/cursos');
 
-	if (error) return <p>Ocorreu um erro.</p>
-	if (!data) return <p>Carregando...</p>
+	if (error) return <Error />
+	if (!data) return <Loading />
 
 	return (
 		<Layout>
