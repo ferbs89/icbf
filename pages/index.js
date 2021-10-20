@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { useFetch } from '../hooks/useFetch';
 
 import Layout from '../components/Layout';
-import Layout from '../components/Layout';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
 
